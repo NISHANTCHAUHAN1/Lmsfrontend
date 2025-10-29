@@ -8,11 +8,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    // It's safer to get the token directly without JSON.parse,
-    // unless you are certain it's stored as a JSON string.
-    // This avoids potential parsing errors.
     const tokenItem = sessionStorage.getItem("accessToken");
-    // The token might be stored with quotes if it was stringified, so we can remove them.
     const accessToken = tokenItem ? tokenItem.replace(/"/g, "") : null;
 
     if (accessToken) {
